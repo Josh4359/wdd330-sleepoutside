@@ -19,6 +19,7 @@ export default class ProductDetails {
     
     addProductToCart() {
         const cartItems = getLocalStorage("so-cart") || [];
+        if (cartItems.find(x => x.Id == this.product.Id)) return;
         cartItems.push(this.product);
         setLocalStorage("so-cart", cartItems);
     }
@@ -29,7 +30,7 @@ export default class ProductDetails {
         document.querySelector('h3').textContent = product.NameWithoutBrand;
 
         const productImage = document.getElementById('productImage');
-        productImage.src = product.Image;
+        productImage.src = product.Images.PrimaryLarge;
         productImage.alt = product.NameWithoutBrand;
 
         document.getElementById('productPrice').textContent = product.FinalPrice;
