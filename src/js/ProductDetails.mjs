@@ -19,6 +19,7 @@ export default class ProductDetails {
     
     addProductToCart() {
         const cartItems = getLocalStorage("so-cart") || [];
+        if (cartItems.find(x => x.Id == this.product.Id)) return;
         cartItems.push(this.product);
         setLocalStorage("so-cart", cartItems);
     }
